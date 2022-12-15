@@ -1,25 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {v1} from "uuid";
+import {Todolist} from "./Todolist";
 
 function App() {
+  const tasks = [
+    {id: v1(), title: 'HTML&CSS', isDone: true},
+    {id: v1(), title: 'JavaScript', isDone: true},
+    {id: v1(), title: 'React', isDone: true}
+  ]
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+<Todolist/>
+      </div>
   );
 }
 
