@@ -37,10 +37,10 @@ function App() {
     let taskForTodolist = tasks
     switch (filter) {
         case "active":
-            taskForTodolist = tasks.filter(t => t.isDone === true)
+            taskForTodolist = tasks.filter(t => t.isDone === false)
             break;
         case "completed":
-            taskForTodolist = tasks.filter(t => t.isDone === false)
+            taskForTodolist = tasks.filter(t => t.isDone === true)
             break;
     }
     return (
