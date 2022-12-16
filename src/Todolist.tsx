@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {MouseEventHandler, useState} from 'react';
 import {FilterForTodo, TasksType} from "./App";
 
 export type TodolistTypeProps = {
@@ -11,6 +11,9 @@ export type TodolistTypeProps = {
 
 export function Todolist(props: TodolistTypeProps) {
     const [newTaskTitle, setNewTaskTitle] = useState('')
+    const onClickAddTaskHandler =  () => {props.addTask(newTaskTitle)
+        setNewTaskTitle('')
+    }
     return (
         <div>
             <h3>{props.title}</h3>
@@ -18,11 +21,14 @@ export function Todolist(props: TodolistTypeProps) {
                 <input
                     value={newTaskTitle}
                     onChange={(e) => {
-                    setNewTaskTitle(e.currentTarget.value)
+                    setNewTaskTitle(e.currentTarget.value)}}
+                    onKeyPress={ (e) => {
+                        if(e.key === 'Enter') {
+                            onClickAddTaskHandler()
+                        }
                     }}
                 />
-                <button onClick={ (e) => {props.addTask(newTaskTitle)
-                }}>+</button>
+                <button onClick={onClickAddTaskHandler}>+</button>
             </div>
             <ul>
                 {props.tasks.map(t =>
