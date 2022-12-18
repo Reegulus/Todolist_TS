@@ -12,6 +12,7 @@ export type TodolistTypeProps = {
 
 export function Todolist(props: TodolistTypeProps) {
     const [newTitle, setNewTitle] = useState('')
+    const [error, setError] = useState<string | null>(null)
     const arrayMapMethods = props.tasks.map(t => {
         const onRemoveTaskHandler = () => {
             props.removeTask(t.id)
@@ -33,10 +34,13 @@ export function Todolist(props: TodolistTypeProps) {
         if (newTitle.trim() !== '') {
             props.addTask(newTitle.trim())
             setNewTitle('')
+        } else  {
+            setError('Title is required')
         }
 
     }
     const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+        setError(null)
         if (event.key === 'Enter') {
             onClickAddTitleHandler()
         }
@@ -58,11 +62,13 @@ export function Todolist(props: TodolistTypeProps) {
             <h3>{props.title}</h3>
             <div>
                 <input
+                    className={error ? 'error' : ''}
                     value={newTitle}
                     onChange={onChangeNewTitle}
                     onKeyPress={onKeyPressHandler}
                 />
                 <button onClick={onClickAddTitleHandler}>+</button>
+                {error && <div className={'error-message'}>{error}</div>}
             </div>
             <ul>{arrayMapMethods}</ul>
             <div>

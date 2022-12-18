@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+.error {
+  border: red 1px solid;
+}
+
+.error-message {
+  color: red;
+}
