@@ -5,6 +5,7 @@ export type TodolistTypeProps = {
     title: string
     tasks: Array<TasksType>
     addTask: (title: string) => void
+    filter: FilterForTodo
     removeTask: (taskId: string) => void
     changeFilter: (value: FilterForTodo) => void
     changeTaskStatus: (taskId: string, isDone: boolean) => void
@@ -72,9 +73,9 @@ export function Todolist(props: TodolistTypeProps) {
             </div>
             <ul>{arrayMapMethods}</ul>
             <div>
-                <button onClick={onClickAll}>All</button>
-                <button onClick={onClickActive}>Active</button>
-                <button onClick={onClickCompleted}>Completed</button>
+                <button className={props.filter === "all" ? 'active-filter' : ''} onClick={onClickAll}>All</button>
+                <button className={props.filter === "active" ? 'active-filter' : ''} onClick={onClickActive}>Active</button>
+                <button className={props.filter === "completed" ? 'active-filter' : ''} onClick={onClickCompleted}>Completed</button>
             </div>
         </div>
     );
