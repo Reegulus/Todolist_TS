@@ -30,8 +30,11 @@ export function Todolist(props: TodolistTypeProps) {
             </li>)
     })
     const onClickAddTitleHandler = () => {
-        props.addTask(newTitle)
-        setNewTitle('')
+        if (newTitle.trim() !== '') {
+            props.addTask(newTitle.trim())
+            setNewTitle('')
+        }
+
     }
     const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
@@ -41,9 +44,15 @@ export function Todolist(props: TodolistTypeProps) {
     const onChangeNewTitle = (event: ChangeEvent<HTMLInputElement>) => {
         setNewTitle(event.currentTarget.value)
     }
-    const onClickAll = () => {props.changeFilter('all')}
-    const onClickActive = () => {props.changeFilter('active')}
-    const onClickCompleted = () => {props.changeFilter('completed')}
+    const onClickAll = () => {
+        props.changeFilter('all')
+    }
+    const onClickActive = () => {
+        props.changeFilter('active')
+    }
+    const onClickCompleted = () => {
+        props.changeFilter('completed')
+    }
     return (
         <div>
             <h3>{props.title}</h3>
