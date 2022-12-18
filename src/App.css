@@ -46,3 +46,6 @@
 .active-filter {
   background-color: #61dafb;
 }
+.is-done {
+  opacity: 0.5;
+}
