@@ -8,6 +8,7 @@ export type TasksPropsType = {
     title: string
     isDone: boolean
 }
+export type FilterPropsType = 'all' | 'active' | 'completed'
 
 function App() {
     const [tasks, setTasks] = useState([
@@ -16,12 +17,22 @@ function App() {
         {id: v1(), title: 'React', isDone: false},
         {id: v1(), title: 'Redux', isDone: false}
     ])
+    const [filter, setFilter] = useState<FilterPropsType>('all')
     function addTask (taskTitle: string) {
         let newTask = {id: v1(), title: taskTitle, isDone: false}
-        setTasks([...tasks, newTask])
+        setTasks([newTask, ...tasks])
     }
     function removeTask(taskId: string) {
         setTasks(tasks.filter(t => t.id !== taskId))
+    }
+    function changeFilter (value: FilterPropsType) {
+        setFilter(value)
+    }
+    let taskForTodolist = tasks
+    if(filter === 'active') {
+        taskForTodolist = tasks.filter(t=> t.isDone === true)
+    } if (filter === 'completed') {
+        taskForTodolist = tasks.filter(t => t.isDone === false)
     }
 
 
@@ -29,9 +40,10 @@ function App() {
         <div className="App">
             <Todolist
                 title={'What to learn'}
-                tasks={tasks}
+                tasks={taskForTodolist}
                 addTask={addTask}
                 removeTask={removeTask}
+                changeFilter={changeFilter}
             />
         </div>
     );
