@@ -10,6 +10,8 @@ export function Todolist(props: TodolistPropsType) {
     return (
         <div>
             <h2>{props.title}</h2>
+            <input type="text"/>
+
         </div>
     );
 };
