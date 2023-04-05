@@ -52,6 +52,7 @@ if(filter === 'active') {
             <Todolist
                 title={'What to learn'}
                 addTask={addTask}
+                filter={filter}
                 tasks={taskForTodolist}
                 removeTask={removeTask}
                 changeStatus={changeStatus}
