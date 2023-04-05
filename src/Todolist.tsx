@@ -3,6 +3,7 @@ import {FilterPropsType, TasksPropsType} from "./App";
 
 export type  TodolistPropsType = {
     title: string
+    tasks: TasksPropsType[]
 }
 
 export function Todolist(props: TodolistPropsType) {
@@ -12,6 +13,18 @@ export function Todolist(props: TodolistPropsType) {
             <h2>{props.title}</h2>
             <input type="text"/>
             <button>+</button>
+            <ul>
+                {props.tasks.map( (el) => {
+                    return (
+                        <li key={el.id}>
+                            <input type="checkbox" checked={el.isDone}/>
+                            <span>{el.title}</span>
+                            <button>x</button>
+                        </li>
+                    )
+                })}
+            </ul>
+
         </div>
     );
 };
