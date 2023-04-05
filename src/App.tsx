@@ -18,43 +18,27 @@ function App() {
         {id: v1(), title: 'Redux', isDone: false}
     ])
     const [filter, setFilter] = useState<FilterPropsType>('all')
-    function addTask (taskTitle: string) {
-        let newTask = {id: v1(), title: taskTitle, isDone: false}
-        setTasks([newTask, ...tasks])
+    function addTask () {
+
     }
-    function changeStatus (taskId: string, isDone: boolean) {
-        let task = tasks.find(t => t.id === taskId)
-        if(task) {
-            task.isDone = isDone
-        }
-        setTasks([...tasks])
+    function changeStatus () {
+
     }
-    function removeTask(taskId: string) {
-        setTasks(tasks.filter(t => t.id !== taskId))
+    function removeTask() {
+
     }
-    function changeFilter (value: FilterPropsType) {
-        setFilter(value)
+    function changeFilter () {
+
     }
     let taskForTodolist = tasks
-    if(filter === 'active') {
-        taskForTodolist = tasks.filter(t=> t.isDone === true)
-    }
-    if (filter === 'completed') {
-        taskForTodolist = tasks.filter(t => t.isDone === false)
-    }
+
 
 
 
     return (
         <div className="App">
             <Todolist
-                title={'What to learn'}
-                tasks={taskForTodolist}
-                addTask={addTask}
-                filter={filter}
-                removeTask={removeTask}
-                changeStatus={changeStatus}
-                changeFilter={changeFilter}
+
             />
         </div>
     );
