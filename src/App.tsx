@@ -24,8 +24,12 @@ function App() {
         setTasks([newTask, ...tasks])
     }
 
-    function changeStatus() {
-
+    function changeStatus(taskId: string, isDone: boolean) {
+       let task = tasks.find(el => el.id === taskId)
+           if(task) {
+               task.isDone = isDone
+               setTasks([...tasks])
+           }
     }
 
     function removeTask(taskId: string) {
@@ -46,6 +50,7 @@ function App() {
                 addTask={addTask}
                 tasks={tasks}
                 removeTask={removeTask}
+                changeStatus={changeStatus}
             />
         </div>
     );
