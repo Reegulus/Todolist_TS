@@ -4,6 +4,7 @@ import {FilterPropsType, TasksPropsType} from "./App";
 export type  TodolistPropsType = {
     title: string
     tasks: TasksPropsType[]
+    removeTask: (taskId: string)=> void
 }
 
 export function Todolist(props: TodolistPropsType) {
@@ -15,11 +16,12 @@ export function Todolist(props: TodolistPropsType) {
             <button>+</button>
             <ul>
                 {props.tasks.map( (el) => {
+                    const removeTaskHandler = () => {props.removeTask(el.id)}
                     return (
                         <li key={el.id}>
                             <input type="checkbox" checked={el.isDone}/>
                             <span>{el.title}</span>
-                            <button>x</button>
+                            <button onClick={removeTaskHandler}>x</button>
                         </li>
                     )
                 })}

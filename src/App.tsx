@@ -24,8 +24,8 @@ function App() {
     function changeStatus () {
 
     }
-    function removeTask() {
-
+    function removeTask(taskId: string) {
+        setTasks(tasks.filter(el => el.id !== taskId))
     }
     function changeFilter () {
 
@@ -40,6 +40,7 @@ function App() {
             <Todolist
                 title={'What to learn'}
                 tasks={tasks}
+                removeTask={removeTask}
             />
         </div>
     );
