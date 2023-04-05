@@ -18,27 +18,32 @@ function App() {
         {id: v1(), title: 'Redux', isDone: false}
     ])
     const [filter, setFilter] = useState<FilterPropsType>('all')
-    function addTask () {
+
+    function addTask(title: string) {
+        const newTask = {id: v1(), title: title, isDone: false}
+        setTasks([newTask, ...tasks])
+    }
+
+    function changeStatus() {
 
     }
-    function changeStatus () {
 
-    }
     function removeTask(taskId: string) {
         setTasks(tasks.filter(el => el.id !== taskId))
     }
-    function changeFilter () {
+
+    function changeFilter() {
 
     }
+
     let taskForTodolist = tasks
-
-
 
 
     return (
         <div className="App">
             <Todolist
                 title={'What to learn'}
+                addTask={addTask}
                 tasks={tasks}
                 removeTask={removeTask}
             />
