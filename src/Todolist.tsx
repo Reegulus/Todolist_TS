@@ -11,7 +11,7 @@ export function Todolist(props: TodolistPropsType) {
         <div>
             <h2>{props.title}</h2>
             <input type="text"/>
-
+            <button>+</button>
         </div>
     );
 };
