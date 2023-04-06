@@ -8,9 +8,20 @@ export type TasksPropsType = {
     title: string
     isDone: boolean
 }
+export type TodolistType = {
+    id: string
+    title: string
+    filter: FilterPropsType
+}
 export type FilterPropsType = 'all' | 'active' | 'completed'
 
 function App() {
+    const todolist1 = v1()
+    const todolist2 = v1()
+    const [todolist, setTodolist] = useState<TodolistType[]>([
+        {id: todolist1, title: 'What to learn', filter: 'all'},
+        {id: todolist2, title: 'What to buy', filter: 'all'},
+    ])
     const [tasks, setTasks] = useState([
         {id: v1(), title: 'HTML&CSS', isDone: false},
         {id: v1(), title: 'JavaScript', isDone: false},
@@ -49,15 +60,20 @@ if(filter === 'active') {
 
     return (
         <div className="App">
-            <Todolist
-                title={'What to learn'}
-                addTask={addTask}
-                filter={filter}
-                tasks={taskForTodolist}
-                removeTask={removeTask}
-                changeStatus={changeStatus}
-                changeFilter={changeFilter}
-            />
+            {todolist.map( (tl) => {
+                return (
+                    <Todolist
+                        title={tl.title}
+                        addTask={addTask}
+                        filter={tl.filter}
+                        tasks={taskForTodolist}
+                        removeTask={removeTask}
+                        changeStatus={changeStatus}
+                        changeFilter={changeFilter}
+                    />
+                )
+            })}
+
         </div>
     );
 }
