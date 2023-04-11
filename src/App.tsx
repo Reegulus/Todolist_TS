@@ -61,6 +61,13 @@ function addTodolist(title: string) {
         delete tasks[id]
         setTasks({...tasks})
     }
+    function changeTodolistTitle(todolistId: string, newTitle: string) {
+        const todolist = todolists.find(tl => tl.id === todolistId)
+        if(todolist) {
+            todolist.title = newTitle
+            setTodolists([...todolists])
+        }
+    }
     function removeTask(taskId: string, todolistId: string) {
         setTasks({...tasks, [todolistId]: tasks[todolistId].filter(t => t.id !== taskId)})
     }
@@ -109,6 +116,7 @@ function addTodolist(title: string) {
                                 tasks={taskForTodolist}
                                 removeTask={removeTask}
                                 removeTodolist={removeTodolist}
+                                changeTodolistTitle={changeTodolistTitle}
                                 changeStatus={changeStatus}
                                 changeFilter={changeFilter}
                                 changeTasksTitle={changeTasksTitle}
