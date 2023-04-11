@@ -8,13 +8,13 @@ import {EditableSpan} from "./EditableSpan";
 export type  TodolistPropsType = {
     id: string
     title: string
-    filter: FilterPropsType
     tasks: TasksPropsType[]
+    filter: FilterPropsType
+    removeTodolist: (todolistId: string) => void
     addTask: (title: string, todolistId: string) => void
     removeTask: (taskId: string, todolistId: string) => void
-    removeTodolist: (todolistId: string) => void
-    changeTodolistTitle: (todolistId: string, newTitle: string) => void
     changeFilter: (value: FilterPropsType, todolistId: string) => void
+    changeTodolistTitle: (todolistId: string, newTitle: string) => void
     changeStatus: (taskId: string, isDone: boolean, todolistId: string) => void
     changeTasksTitle: (taskId: string, newTitle: string, todolistId: string) => void
 }
@@ -39,7 +39,7 @@ export function Todolist(props: TodolistPropsType) {
         <div>
             <h2>
                 <EditableSpan title={props.title} onChange={onChangeTodolistTitleHandler}/>
-                <button onClick={removeTodolistHandler}>+</button>
+                <button onClick={removeTodolistHandler}>x</button>
             </h2>
             <AddItemForm callback={(title) => {
                 props.addTask(title, props.id)
