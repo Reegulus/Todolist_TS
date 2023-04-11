@@ -12,19 +12,22 @@ export type  TodolistPropsType = {
     tasks: TasksPropsType[]
     addTask: (title: string, todolistId: string)=> void
     removeTask: (taskId: string, todolistId: string)=> void
+    removeTodolist: (todolistId: string)=> void
     changeFilter: (value: FilterPropsType, todolistId: string)=> void
     changeStatus: (taskId: string, isDone: boolean, todolistId: string)=> void
     changeTasksTitle: (taskId: string, newTitle: string, todolistId: string)=> void
 }
 
 export function Todolist(props: TodolistPropsType) {
-    const removeTodolistHandler = () => {}
+    const removeTodolistHandler = () => {props.removeTodolist(props.id)}
     const onAllClickHandler =  () => {props.changeFilter('all', props.id)}
     const onActiveClickHandler = () => {props.changeFilter('active', props.id)}
     const onCompletedClickHandler =  () => {props.changeFilter('completed', props.id)}
     return (
         <div>
-            <h2>{props.title}
+            <h2>
+                <EditableSpan title={props.title} onChange={(value) => {}}/>
+                {props.title}
                 <button onClick={removeTodolistHandler}>+</button>
             </h2>
             <AddItemForm callback={(title)=>{props.addTask(title, props.id)}}  />
