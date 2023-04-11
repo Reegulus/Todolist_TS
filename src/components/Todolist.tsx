@@ -1,8 +1,9 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
-import {FilterPropsType, TasksPropsType} from "./App";
+import {FilterPropsType, TasksPropsType} from "../App";
 import {Simulate} from "react-dom/test-utils";
 import keyPress = Simulate.keyPress;
 import {AddItemForm} from "./AddItemForm";
+import {EditableSpan} from "./EditableSpan";
 
 export type  TodolistPropsType = {
     id: string
@@ -13,6 +14,7 @@ export type  TodolistPropsType = {
     removeTask: (taskId: string, todolistId: string)=> void
     changeFilter: (value: FilterPropsType, todolistId: string)=> void
     changeStatus: (taskId: string, isDone: boolean, todolistId: string)=> void
+    changeTasksTitle: (taskId: string, newTitle: string, todolistId: string)=> void
 }
 
 export function Todolist(props: TodolistPropsType) {
@@ -34,6 +36,9 @@ export function Todolist(props: TodolistPropsType) {
                         let newIsDoneValue = e.currentTarget.checked
                         props.changeStatus(el.id, newIsDoneValue, props.id)
                     }
+                    const onChangeTitleHandler = (newValue: string) => {
+                        props.changeTasksTitle(el.id, newValue, props.id)
+                    }
                     return (
                         <li key={el.id} className={el.isDone ?'is-done' : ''}>
                             <input
@@ -41,7 +46,7 @@ export function Todolist(props: TodolistPropsType) {
                                 checked={el.isDone}
                                 onChange={onChangeTaskHandler}
                             />
-                            <span>{el.title}</span>
+                            <EditableSpan title={el.title} onChange={onChangeTitleHandler}/>
                             <button onClick={removeTaskHandler}>x</button>
                         </li>
                     )

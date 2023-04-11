@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
-import {FilterPropsType, TasksPropsType} from "./App";
+import {FilterPropsType, TasksPropsType} from "../App";
 import {Simulate} from "react-dom/test-utils";
 import keyPress = Simulate.keyPress;
 
