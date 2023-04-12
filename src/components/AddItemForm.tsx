@@ -37,7 +37,6 @@ export function AddItemForm(props: SuperInputType) {
                 onChange={onChangeInputHandler}/>
             <Button onClick={addTaskHandler} variant={"contained"}><AddIcon/></Button>
             {error && <div className={'error-message'}>{error}</div>}
-
         </div>
     );
 };

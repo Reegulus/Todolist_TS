@@ -1,9 +1,11 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterPropsType, TasksPropsType} from "../App";
-import {Simulate} from "react-dom/test-utils";
-import keyPress = Simulate.keyPress;
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
+import {Button, IconButton} from "@mui/material";
 
 export type  TodolistPropsType = {
     id: string
@@ -39,7 +41,9 @@ export function Todolist(props: TodolistPropsType) {
         <div>
             <h2>
                 <EditableSpan title={props.title} onChange={onChangeTodolistTitleHandler}/>
-                <button onClick={removeTodolistHandler}>x</button>
+                <IconButton aria-label={'delete'} color={'inherit'} size={'large'} onClick={removeTodolistHandler}>
+                    <DeleteForeverRoundedIcon fontSize={'large'}/>
+                </IconButton>
             </h2>
             <AddItemForm callback={(title) => {
                 props.addTask(title, props.id)
@@ -65,13 +69,17 @@ export function Todolist(props: TodolistPropsType) {
                                 onChange={onChangeTaskHandler}
                             />
                             <EditableSpan title={el.title} onChange={onChangeTitleHandler}/>
-                            <button onClick={removeTaskHandler}>x</button>
+                            <IconButton aria-label={'delete'} color={'inherit'} size={'large'}
+                                        onClick={removeTaskHandler}>
+                                <DeleteForeverRoundedIcon fontSize={'large'}/>
+                            </IconButton>
                         </li>
                     )
                 })}
             </ul>
             <div>
-                <button className={props.filter === 'all' ? 'active-filter' : ''} onClick={onAllClickHandler}>All
+                <button className={props.filter === 'all' ? 'active-filter' : ''}
+                        onClick={onAllClickHandler}>All
                 </button>
                 <button className={props.filter === 'active' ? 'active-filter' : ''}
                         onClick={onActiveClickHandler}>Active
