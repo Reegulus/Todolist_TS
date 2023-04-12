@@ -1,8 +1,6 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
-import {FilterPropsType, TasksPropsType} from "../App";
-import {Simulate} from "react-dom/test-utils";
-import keyPress = Simulate.keyPress;
-
+import {Button} from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 export type  SuperInputType = {
     callback: (title: string)=> void
 }
@@ -37,7 +35,7 @@ export function AddItemForm(props: SuperInputType) {
                 value={newTitle}
                 onKeyPress={onKeyPressInputHandler}
                 onChange={onChangeInputHandler}/>
-            <button onClick={addTaskHandler}>+</button>
+            <Button onClick={addTaskHandler} variant={"contained"}><AddIcon/></Button>
             {error && <div className={'error-message'}>{error}</div>}
 
         </div>
