@@ -1,9 +1,9 @@
 .App {
   display: flex;
   /*padding: 30px;*/
-  background-color: #282c34;
+  /*background-color: #282c34;*/
   min-height: 100vh;
-  color: white;
+  /*color: #8ab4f8;*/
 }
 .app-addItemForm {
   padding: 30px;

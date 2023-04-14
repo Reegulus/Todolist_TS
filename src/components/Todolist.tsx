@@ -1,11 +1,9 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterPropsType, TasksPropsType} from "../App";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-import {Button, IconButton} from "@mui/material";
+import {Box, Button, ButtonGroup, IconButton, Stack} from "@mui/material";
 
 export type  TodolistPropsType = {
     id: string
@@ -41,15 +39,15 @@ export function Todolist(props: TodolistPropsType) {
         <div>
             <h2>
                 <EditableSpan title={props.title} onChange={onChangeTodolistTitleHandler}/>
-                <IconButton aria-label={'delete'} color={'inherit'} size={'large'} onClick={removeTodolistHandler}>
-                    <DeleteForeverRoundedIcon fontSize={'large'}/>
+                <IconButton aria-label={'delete'} onClick={removeTodolistHandler}>
+                    <DeleteForeverRoundedIcon fontSize={'inherit'} color={'error'}/>
                 </IconButton>
             </h2>
             <AddItemForm callback={(title) => {
                 props.addTask(title, props.id)
             }}/>
 
-            <ul>
+            <div>
                 {props.tasks.map((el) => {
                     const removeTaskHandler = () => {
                         props.removeTask(el.id, props.id)
@@ -62,31 +60,55 @@ export function Todolist(props: TodolistPropsType) {
                         props.changeTasksTitle(el.id, newValue, props.id)
                     }
                     return (
-                        <li key={el.id} className={el.isDone ? 'is-done' : ''}>
+                        <div key={el.id} className={el.isDone ? 'is-done' : ''} >
                             <input
+
                                 type="checkbox"
                                 checked={el.isDone}
                                 onChange={onChangeTaskHandler}
                             />
                             <EditableSpan title={el.title} onChange={onChangeTitleHandler}/>
-                            <IconButton aria-label={'delete'} color={'inherit'} size={'large'}
-                                        onClick={removeTaskHandler}>
-                                <DeleteForeverRoundedIcon fontSize={'large'}/>
+
+
+                            <IconButton
+                                aria-label={'delete'}
+                                color={'default'} size={'small'}
+                                onClick={removeTaskHandler}>
+                                <DeleteForeverRoundedIcon/>
                             </IconButton>
-                        </li>
+
+
+                        </div>
                     )
                 })}
-            </ul>
+            </div>
             <div>
-                <button className={props.filter === 'all' ? 'active-filter' : ''}
-                        onClick={onAllClickHandler}>All
-                </button>
-                <button className={props.filter === 'active' ? 'active-filter' : ''}
-                        onClick={onActiveClickHandler}>Active
-                </button>
-                <button className={props.filter === 'completed' ? 'active-filter' : ''}
-                        onClick={onCompletedClickHandler}>Completed
-                </button>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        '& > *': {
+                            m: 1,
+                        },
+                    }}
+                >
+                    <ButtonGroup color={'primary'} size={'medium'} variant={'outlined'}
+                                 aria-label={'outlined button group'}>
+                        <Button
+                            variant={props.filter === 'all' ? 'contained' : 'outlined'}
+                            onClick={onAllClickHandler}>All
+                        </Button>
+                        <Button
+                            variant={props.filter === 'active' ? 'contained' : 'outlined'}
+                            onClick={onActiveClickHandler}>Active
+                        </Button>
+                        <Button
+                            variant={props.filter === 'completed' ? 'contained' : 'outlined'}
+                            onClick={onCompletedClickHandler}>Completed
+                        </Button>
+                    </ButtonGroup>
+                </Box>
             </div>
 
         </div>

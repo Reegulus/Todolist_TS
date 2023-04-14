@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
-import {Button} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+
+
 export type  SuperInputType = {
     callback: (title: string)=> void
 }
@@ -29,13 +31,24 @@ export function AddItemForm(props: SuperInputType) {
     }
     return (
         <div>
-            <input
+            <TextField
+                color={'primary'}
+                size={'small'}
+                // label={'NewTask'}
+                variant={'outlined'}
+
+
                 className={error ? 'error' : ''}
-                placeholder={'new text'}
+                placeholder={'New text'}
                 value={newTitle}
                 onKeyPress={onKeyPressInputHandler}
                 onChange={onChangeInputHandler}/>
-            <Button onClick={addTaskHandler} variant={"contained"}><AddIcon/></Button>
+            <Button
+                size={'large'}
+                variant={'contained'}
+                onClick={addTaskHandler}
+                color={'primary'}><AddIcon/></Button>
+
             {error && <div className={'error-message'}>{error}</div>}
         </div>
     );
