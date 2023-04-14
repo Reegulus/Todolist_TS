@@ -36,9 +36,7 @@ export function AddItemForm(props: SuperInputType) {
                 size={'small'}
                 // label={'NewTask'}
                 variant={'outlined'}
-
-
-                className={error ? 'error' : ''}
+                error={!!error}
                 placeholder={'New text'}
                 value={newTitle}
                 onKeyPress={onKeyPressInputHandler}

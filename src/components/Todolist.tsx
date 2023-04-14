@@ -1,9 +1,10 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterPropsType, TasksPropsType} from "../App";
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-import {Box, Button, ButtonGroup, IconButton, Stack} from "@mui/material";
+import {Box, Button, ButtonGroup, Checkbox, IconButton, Stack} from "@mui/material";
 
 export type  TodolistPropsType = {
     id: string
@@ -20,6 +21,7 @@ export type  TodolistPropsType = {
 }
 
 export function Todolist(props: TodolistPropsType) {
+    // const [onMouseColor, setOnMouseColor] = useState('#ffffff');
     const removeTodolistHandler = () => {
         props.removeTodolist(props.id)
     }
@@ -39,9 +41,14 @@ export function Todolist(props: TodolistPropsType) {
         <div>
             <h2>
                 <EditableSpan title={props.title} onChange={onChangeTodolistTitleHandler}/>
-                <IconButton aria-label={'delete'} onClick={removeTodolistHandler}>
-                    <DeleteForeverRoundedIcon fontSize={'inherit'} color={'error'}/>
-                </IconButton>
+                <Button
+                    color={'primary'}
+                    variant={'text'}
+                    size={'small'}
+                    onClick={removeTodolistHandler}>
+                    <DeleteForeverRoundedIcon fontSize={'medium'}/>
+                </Button>
+
             </h2>
             <AddItemForm callback={(title) => {
                 props.addTask(title, props.id)
@@ -59,23 +66,29 @@ export function Todolist(props: TodolistPropsType) {
                     const onChangeTitleHandler = (newValue: string) => {
                         props.changeTasksTitle(el.id, newValue, props.id)
                     }
+                    // const buttonColor = {background: `${onMouseColor}`}
+                    // const onMouseEnterHandler = () => setOnMouseColor('#0000ff')
+                    // const onMouseLeaveHandler = () => setOnMouseColor('#ffffff')
                     return (
-                        <div key={el.id} className={el.isDone ? 'is-done' : ''} >
-                            <input
-
-                                type="checkbox"
+                        <div key={el.id} className={el.isDone ? 'is-done' : ''}>
+                            <Checkbox
+                                color={'primary'}
                                 checked={el.isDone}
                                 onChange={onChangeTaskHandler}
                             />
+
                             <EditableSpan title={el.title} onChange={onChangeTitleHandler}/>
-
-
-                            <IconButton
-                                aria-label={'delete'}
-                                color={'default'} size={'small'}
+                            <Button
+                               /* style={buttonColor}
+                                onMouseEnter={onMouseEnterHandler}
+                                onMouseLeave={onMouseLeaveHandler}*/
+                                // aria-label={'delete'}
+                                color={'primary'}
+                                variant={'text'}
+                                size={'small'}
                                 onClick={removeTaskHandler}>
-                                <DeleteForeverRoundedIcon/>
-                            </IconButton>
+                                <DeleteForeverRoundedIcon fontSize={'medium'}/>
+                            </Button>
 
 
                         </div>

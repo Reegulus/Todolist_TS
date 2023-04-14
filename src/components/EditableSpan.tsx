@@ -30,6 +30,7 @@ export function EditableSpan(props: EditableSpanPropsType) {
         editMode
             ?
             <TextField
+                color={'primary'}
                 variant={'standard'}
                 value={title}
                 onChange={onChangeTitleHandler}
