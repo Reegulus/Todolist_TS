@@ -34,11 +34,11 @@ export function AddItemForm(props: SuperInputType) {
             <TextField
                 color={'primary'}
                 size={'small'}
-                // label={'NewTask'}
+                label={'Title'}
                 variant={'outlined'}
                 error={!!error}
-                placeholder={'New text'}
                 value={newTitle}
+                helperText={error}
                 onKeyPress={onKeyPressInputHandler}
                 onChange={onChangeInputHandler}/>
             <Button
@@ -47,7 +47,7 @@ export function AddItemForm(props: SuperInputType) {
                 onClick={addTaskHandler}
                 color={'primary'}><AddIcon/></Button>
 
-            {error && <div className={'error-message'}>{error}</div>}
+            {/*{error && <div className={'error-message'}>{error}</div>}*/}
         </div>
     );
 };
