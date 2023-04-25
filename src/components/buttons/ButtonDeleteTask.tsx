@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
-import {FilterPropsType, TasksPropsType} from "../App";
+import {FilterPropsType, TasksPropsType} from "../../App";
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {AddItemForm} from "./AddItemForm";
-import {EditableSpan} from "./EditableSpan";
+import {AddItemForm} from "../AddItemForm";
+import {EditableSpan} from "../EditableSpan";
 import {Box, Button, ButtonGroup, Checkbox, FormControlLabel, IconButton, Stack} from "@mui/material";
 
 export type  TaskPropsType = {

@@ -100,7 +100,6 @@ function App() {
 
     return (
         <Container fixed>
-            <div className="App">
                 <Box sx={{flexGrow: 1}}>
                     <AppBar position="static">
                         <Toolbar>
@@ -120,10 +119,12 @@ function App() {
                         </Toolbar>
                     </AppBar>
                 </Box>
-                <Grid container>
+                <Grid
+                    style={{padding: '20px'}}
+                    container>
                     <AddItemForm callback={addTodolist}/>
                 </Grid>
-                <Grid container spacing={7}>
+                <Grid container spacing={10}>
                     {
                         todolists.map((tl) => {
 
@@ -137,28 +138,30 @@ function App() {
 
                             return (
                                 <Grid item>
-                                    <Paper elevation={3} variant={'elevation'}>
-                                    <Todolist
-                                        key={tl.id}
-                                        id={tl.id}
-                                        title={tl.title}
-                                        addTask={addTask}
-                                        filter={tl.filter}
-                                        tasks={taskForTodolist}
-                                        removeTask={removeTask}
-                                        changeStatus={changeStatus}
-                                        changeFilter={changeFilter}
-                                        removeTodolist={removeTodolist}
-                                        changeTasksTitle={changeTasksTitle}
-                                        changeTodolistTitle={changeTodolistTitle}
-                                    />
+                                    <Paper
+                                        style={{padding: '25px'}}
+                                        elevation={3}
+                                        variant={'elevation'}>
+                                        <Todolist
+                                            key={tl.id}
+                                            id={tl.id}
+                                            title={tl.title}
+                                            addTask={addTask}
+                                            filter={tl.filter}
+                                            tasks={taskForTodolist}
+                                            removeTask={removeTask}
+                                            changeStatus={changeStatus}
+                                            changeFilter={changeFilter}
+                                            removeTodolist={removeTodolist}
+                                            changeTasksTitle={changeTasksTitle}
+                                            changeTodolistTitle={changeTodolistTitle}
+                                        />
                                     </Paper>
                                 </Grid>
                             )
                         })
                     }
                 </Grid>
-            </div>
         </Container>
     );
 }
