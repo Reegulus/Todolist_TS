@@ -1,10 +1,12 @@
-/*
 .App {
   display: flex;
-  !*padding: 30px;*!
-  !*background-color: #282c34;*!
+  padding: 30px;
+  /*background-color: #282c34;*/
   min-height: 100vh;
-  !*color: #8ab4f8;*!
+  /*color: #8ab4f8;*/
+}
+.App > div {
+  margin-right: 50px;
 }
 .app-addItemForm {
   padding: 30px;
@@ -26,4 +28,4 @@
 }
 .is-done {
   opacity: 0.5;
-}*/
+}
