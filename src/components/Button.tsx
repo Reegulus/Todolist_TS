@@ -7,7 +7,6 @@ type PropsType = {
 }
 
 export function Button(props: PropsType) {
-    return <div>
-        <button onClick={props.onClickHandler}>{props.title}</button>
-    </div>
+    return <button onClick={props.onClickHandler}>{props.title}</button>
+
 }

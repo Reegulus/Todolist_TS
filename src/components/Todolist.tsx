@@ -3,7 +3,7 @@ import {FilterValueType} from "../App";
 import {Button} from "./Button";
 
 export type TaskType = {
-    id: number
+    id: string
     title: string
     isDone: boolean
 }
@@ -11,7 +11,8 @@ export type TaskType = {
 type PropsType = {
     title: string
     tasks: Array<TaskType>
-    removeTask: (id: number)=> void
+    addTask: (title: string)=>void
+    removeTask: (id: string)=> void
     changeFilter: (value: FilterValueType)=>void
 }
 
@@ -21,7 +22,7 @@ export function Todolist(props: PropsType) {
         <h3>{props.title}</h3>
         <div>
             <input/>
-            <button>+</button>
+            <Button title={'+'} onClickHandler={()=>{props.addTask(props.title)}}/>
         </div>
         <ul>
             {props.tasks.map(t =>
@@ -34,13 +35,10 @@ export function Todolist(props: PropsType) {
             )}
 
         </ul>
-        <div>
-            <Button title={'All'} onClickHandler={()=>{}}/>
-            <Button title={'Active'} onClickHandler={()=>{}}/>
-            <Button title={'Completed'} onClickHandler={()=>{}}/>
-            <button>-All-</button>
-            <button onClick={() => {props.changeFilter("active")}}>Active</button>
-            <button onClick={()=> {props.changeFilter("completed")}}>Completed</button>
-        </div>
+
+            <Button title={'All'} onClickHandler={()=>{props.changeFilter("all")}}/>
+            <Button title={'Active'} onClickHandler={()=>{props.changeFilter("active")}}/>
+            <Button title={'Completed'} onClickHandler={()=>{props.changeFilter("completed")}}/>
+
     </div>
 }
