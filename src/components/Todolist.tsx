@@ -18,6 +18,9 @@ type PropsType = {
 
 export function Todolist(props: PropsType) {
     const [value, setValue] = useState('')
+    const addTaskHandler = () => {props.addTask(value)
+    setValue('')
+    }
     return <div>
         <h3>{props.title}</h3>
         <div>
@@ -25,7 +28,8 @@ export function Todolist(props: PropsType) {
                 setValue(e.currentTarget.value)
             }}/>
             <Button title={'+'}
-                    onClickHandler={()=>{props.addTask(value)}}/>
+                    onClickHandler={addTaskHandler}
+            />
         </div>
         <ul>
             {props.tasks.map(t =>
