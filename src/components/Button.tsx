@@ -3,10 +3,13 @@ import {FilterValueType} from "../App";
 
 type PropsType = {
     title: string
-    onClickHandler: () => void
+    onClickHandler?: () => void
 }
 
 export function Button(props: PropsType) {
-    return <button onClick={props.onClickHandler}>{props.title}</button>
+    return <button
+        onClick={props.onClickHandler}
+    >{props.title}
+    </button>
 
 }
