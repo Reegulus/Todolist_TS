@@ -33,6 +33,21 @@ export function Todolist(props: PropsType) {
             setTitle(e.currentTarget.value)
         }
     }
+    const mapPropsHandler = props.tasks.map(t => {
+            const onClickButtonHandler = ()=>{props.removeTask(t.id)}
+            return (
+                <li key={t.id}>
+                    <input type="checkbox" checked={t.isDone}/>
+                    <span>{t.title}</span>
+                    <Button title={'✖️'} onClickHandler={onClickButtonHandler}/>
+                </li>
+            )
+        }
+
+    )
+    const onClickHandlerAll = ()=>{props.changeFilter("all")}
+    const onClickHandlerActive = ()=>{props.changeFilter("active")}
+    const onClickHandlerCompleted = ()=>{props.changeFilter("completed")}
 
 
     return <div>
@@ -51,19 +66,12 @@ export function Todolist(props: PropsType) {
             {maxTitleLengthError && <div style={{color: 'red'}}>You have entered too many characters</div>}
         </div>
         <ul>
-            {props.tasks.map(t =>
-                <li key={t.id}>
-                    <input type="checkbox" checked={t.isDone}/>
-                    <span>{t.title}</span>
-                    <Button title={'✖️'} onClickHandler={()=>{props.removeTask(t.id)}}/>
-                </li>
-            )}
-
+            {mapPropsHandler}
         </ul>
 
-            <Button title={'All'} onClickHandler={()=>{props.changeFilter("all")}}/>
-            <Button title={'Active'} onClickHandler={()=>{props.changeFilter("active")}}/>
-            <Button title={'Completed'} onClickHandler={()=>{props.changeFilter("completed")}}/>
+            <Button title={'All'} onClickHandler={onClickHandlerAll}/>
+            <Button title={'Active'} onClickHandler={onClickHandlerActive}/>
+            <Button title={'Completed'} onClickHandler={onClickHandlerCompleted}/>
 
     </div>
 }
