@@ -1,4 +1,4 @@
-import React, {KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValueType} from "../App";
 import {Button} from "./Button";
 
@@ -17,7 +17,10 @@ type PropsType = {
 }
 
 export function Todolist(props: PropsType) {
+
     const [title, setTitle] = useState('')
+    const maxTitleLengthError = title.length >= 15
+
     const addTaskHandler = () => {
         props.addTask(title)
     setTitle('')
@@ -25,22 +28,27 @@ export function Todolist(props: PropsType) {
     const onKeyDownAddTask = (e: KeyboardEvent<HTMLInputElement>) => {
      e.key === 'Enter' && addTaskHandler()
     }
+    const onChangeSetTitle = (e: ChangeEvent<HTMLInputElement>)=>{
+        if(e.currentTarget.value.length <= 15) {
+            setTitle(e.currentTarget.value)
+        }
+    }
+
 
     return <div>
         <h3>{props.title}</h3>
         <div>
             <input
                 value={title}
-                onChange={(e)=>{
-                setTitle(e.currentTarget.value)
-            }}
+                onChange={onChangeSetTitle}
                 onKeyDown={onKeyDownAddTask}
 
             />
             <Button title={'+'}
                     onClickHandler={addTaskHandler}
-
+                    disabled={!title || maxTitleLengthError}
             />
+            {maxTitleLengthError && <div style={{color: 'red'}}>You have entered too many characters</div>}
         </div>
         <ul>
             {props.tasks.map(t =>

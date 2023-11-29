@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {FilterValueType} from "../App";
 
-type PropsType = {
+type ButtonPropsType = {
     title: string
     onClickHandler?: () => void
+    disabled?: boolean
 }
 
-export function Button(props: PropsType) {
+export const Button: FC<ButtonPropsType> = (props) => {
     return <button
         onClick={props.onClickHandler}
+        disabled={props.disabled}
     >{props.title}
     </button>
 
