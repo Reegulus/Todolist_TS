@@ -1,31 +1,8 @@
 .App {
-  display: flex;
   padding: 30px;
-  /*background-color: #282c34;*/
-  min-height: 100vh;
-  /*color: #8ab4f8;*/
+  display: flex;
 }
+
 .App > div {
   margin-right: 50px;
-}
-.app-addItemForm {
-  padding: 30px;
-}
-.todolist {
-  padding: 30px;
-}
-
-.error {
-  border: red 1px solid;
-}
-
-.error-message {
-  color: red;
-}
-
-.active-filter {
-  background-color: #61dafb;
-}
-.is-done {
-  opacity: 0.5;
 }
