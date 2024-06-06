@@ -1,50 +1,27 @@
 import React from 'react';
-import {Button} from "./Button";
 
-export type TaskType = {
-    id: number
+type TodolistPropsType = {
     title: string
-    isDone: boolean
 }
+export function Todolist(props: TodolistPropsType) {
 
-export type PropsType = {
-    title: string
-    tasks: Array<TaskType>
-}
-
-export function Todolist({title, tasks}: PropsType) {
-
-    return <div>
-
-        <h3>{title}</h3>
+    return (
         <div>
-            <input/>
-            <Button title={'+'}/>
+            <h3>{props.title}</h3>
+            <div>
+                <input/>
+                <button>+</button>
+            </div>
+            <ul>
+                <li><input type="checkbox" checked={true}/> <span>HTML&CSS</span></li>
+                <li><input type="checkbox" checked={true}/> <span>JS</span></li>
+                <li><input type="checkbox" checked={false}/> <span>React</span></li>
+            </ul>
+            <div>
+                <button>All</button>
+                <button>Active</button>
+                <button>Completed</button>
+            </div>
         </div>
-        <ul>
-            {
-                tasks.length === 0 ? (
-                    <p>No tasks</p>
-                ) : (
-                    <ul>
-                        {tasks.map((task: TaskType) => {
-                            return (
-                                <li>
-                                    <input type="checkbox" checked={task.isDone}/>
-                                    <span>{task.title}</span>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                )
-            }
-            {/*<li><input type="checkbox" checked={tasks[1].isDone}/> <span>{tasks[1].title}</span></li>
-            <li><input type="checkbox" checked={tasks[2].isDone}/> <span>{tasks[2].title}</span></li>*/}
-        </ul>
-        <div>
-            <Button title={'All'}/>
-            <Button title={'Active'}/>
-            <Button title={'Completed'}/>
-        </div>
-    </div>
+    )
 }
