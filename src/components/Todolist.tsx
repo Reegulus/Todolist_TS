@@ -2,9 +2,23 @@ import React from 'react';
 
 type TodolistPropsType = {
     title: string
+    tasks: TasksType[]
 }
-export function Todolist(props: TodolistPropsType) {
+type TasksType = {
+    id: number
+    title: string
+    isDone: boolean
+}
 
+export function Todolist(props: TodolistPropsType) {
+    const tasksMaping = props.tasks.map((task => {
+        return <li key={task.id}>
+            <input
+                type="checkbox"
+                checked={task.isDone}/>
+            <span>{task.title}</span>
+        </li>
+    }))
     return (
         <div>
             <h3>{props.title}</h3>
@@ -13,9 +27,7 @@ export function Todolist(props: TodolistPropsType) {
                 <button>+</button>
             </div>
             <ul>
-                <li><input type="checkbox" checked={true}/> <span>HTML&CSS</span></li>
-                <li><input type="checkbox" checked={true}/> <span>JS</span></li>
-                <li><input type="checkbox" checked={false}/> <span>React</span></li>
+                {tasksMaping}
             </ul>
             <div>
                 <button>All</button>
