@@ -2,7 +2,7 @@ import React from 'react';
 
 type TodolistPropsType = {
     title: string
-    tasks: TasksType[]
+    tasks: Array<TasksType>
 }
 type TasksType = {
     id: number
@@ -11,7 +11,8 @@ type TasksType = {
 }
 
 export function Todolist(props: TodolistPropsType) {
-    const tasksMaping = props.tasks.map((task => {
+    const tasksMapping: Array<JSX.Element> | JSX.Element = props.tasks.length !=0
+      ?  props.tasks.map((task => {
         return <li key={task.id}>
             <input
                 type="checkbox"
@@ -19,6 +20,7 @@ export function Todolist(props: TodolistPropsType) {
             <span>{task.title}</span>
         </li>
     }))
+            : <span>Your tasks is empty</span>
     return (
         <div>
             <h3>{props.title}</h3>
@@ -27,7 +29,7 @@ export function Todolist(props: TodolistPropsType) {
                 <button>+</button>
             </div>
             <ul>
-                {tasksMaping}
+                {tasksMapping}
             </ul>
             <div>
                 <button>All</button>
