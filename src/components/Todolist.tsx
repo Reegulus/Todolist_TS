@@ -10,9 +10,9 @@ type TasksType = {
     isDone: boolean
 }
 
-export function Todolist(props: TodolistPropsType) {
-    const tasksMapping: Array<JSX.Element> | JSX.Element = props.tasks.length !=0
-      ?  props.tasks.map((task => {
+export function Todolist({title, tasks}: TodolistPropsType) {
+    const tasksMapping: Array<JSX.Element> | JSX.Element = tasks.length !=0
+      ?  tasks.map((task => {
         return <li key={task.id}>
             <input
                 type="checkbox"
@@ -23,7 +23,7 @@ export function Todolist(props: TodolistPropsType) {
             : <span>Your tasks is empty</span>
     return (
         <div>
-            <h3>{props.title}</h3>
+            <h3>{title}</h3>
             <div>
                 <input/>
                 <button>+</button>
