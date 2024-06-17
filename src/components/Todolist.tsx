@@ -11,7 +11,7 @@ type TasksType = {
 }
 
 export function Todolist({title, tasks}: TodolistPropsType) {
-    const tasksMapping: Array<JSX.Element> | JSX.Element = tasks.length !=0
+    const tasksMapping: Array<JSX.Element> | JSX.Element = tasks.length !==0
       ?  tasks.map((task => {
         return <li key={task.id}>
             <input
