@@ -1,8 +1,9 @@
 type ButtonPropsType = {
     title: string
+    callback: ()=>void
 }
-export const Button = ({title}: ButtonPropsType) => {
+export const Button = ({title, callback}: ButtonPropsType) => {
     return (
-        <button>{title}</button>
+        <button onClick={ () => {callback()}}>{title}</button>
     )
 }

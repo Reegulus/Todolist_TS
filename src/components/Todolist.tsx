@@ -19,7 +19,8 @@ export function Todolist({title, tasks}: TodolistPropsType) {
                 type="checkbox"
                 checked={task.isDone}/>
             <span>{task.title}</span>
-            <Button title={'✘'}/>
+            <Button title={'✘'} callback={() => {
+                console.log(task.id)}}/>
         </li>
     }))
             : <span>Your tasks is empty</span>
@@ -28,15 +29,15 @@ export function Todolist({title, tasks}: TodolistPropsType) {
             <h3>{title}</h3>
             <div>
                 <input/>
-                <Button title={'✚'}/>
+                <Button title={'✚'} callback={ () => {}}/>
             </div>
             <ul>
                 {tasksMapping}
             </ul>
             <div>
-                <Button title={'All'}/>
-                <Button title={'Active'}/>
-                <Button title={'Completed'}/>
+                <Button title={'All'} callback={() => {}}/>
+                <Button title={'Active'} callback={ () =>{}}/>
+                <Button title={'Completed'} callback={() =>{}}/>
             </div>
         </div>
     )
