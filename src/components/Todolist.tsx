@@ -1,10 +1,12 @@
 import React from 'react';
 import {Button} from "./Button";
+import {FilterType} from "../App";
 
 type TodolistPropsType = {
     title: string
     tasks: Array<TasksType>
     removeTask: (id: number)=>void
+    taskForTodolist:(void: FilterType)=> void
 
 }
 export type TasksType = {
@@ -21,7 +23,7 @@ export function Todolist({title, tasks, removeTask}: TodolistPropsType) {
                 type="checkbox"
                 checked={task.isDone}/>
             <span>{task.title}</span>
-            <Button title={'✘'} callback={() => {
+            <Button title={'✘'} onClick={() => {
                 removeTask(task.id)}}/>
         </li>
     }))
@@ -31,15 +33,15 @@ export function Todolist({title, tasks, removeTask}: TodolistPropsType) {
             <h3>{title}</h3>
             <div>
                 <input/>
-                <Button title={'✚'} callback={ () => {}}/>
+                <Button title={'✚'} onClick={ () => {}}/>
             </div>
             <ul>
                 {tasksMapping}
             </ul>
             <div>
-                <Button title={'All'} callback={() => {}}/>
-                <Button title={'Active'} callback={ () =>{}}/>
-                <Button title={'Completed'} callback={() =>{}}/>
+                <Button title={'All'} onClick={() => {}}/>
+                <Button title={'Active'} onClick={ () =>{}}/>
+                <Button title={'Completed'} onClick={() =>{}}/>
             </div>
         </div>
     )
