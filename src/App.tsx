@@ -21,11 +21,14 @@ function App() {
         setTasks([...task])
     }
 
+    const changeFilter = (value: FilterType) => {
+        setFilter(value)
+    }
     let taskForTodolist = tasks
     if (filter === 'active') {
         taskForTodolist = tasks.filter(f => f.isDone)
-    } if (filter === 'completed')
-    {
+    }
+    if (filter === 'completed') {
         taskForTodolist = tasks.filter(f => !f.isDone)
     }
 
@@ -35,6 +38,7 @@ function App() {
                 title={titleTodo}
                 removeTask={removeTask}
                 tasks={taskForTodolist}
+                changeFilter={changeFilter}
             />
         </div>
     );
